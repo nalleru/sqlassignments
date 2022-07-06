@@ -66,9 +66,26 @@ group by customer.CustomerId
 order by NoOfOrders desc;*/
 
 /* 8. Fetch the customer details, who has placed multiple orders in the same year*/
+/*select customer.CustomerId, customer.CustomerName, extract(year from orders.OrderedDate) as YearOfOrder
+from customer
+inner join orders
+on customer.CustomerId = orders.CustomerId
+group by orders.OrderId
+having customer.CustomerName in (
+select customer.CustomerName from customer
+left outer join orders
+on customer.CustomerId = orders.CustomerId
+where count(YearOfOrder) > 1);*/
 
 
 /* 9.Fetch the name of the month, in which more number of orders has been placed*/
+/*select extract(month from orders.OrderedDate) as MonthOfOrder
+from orders
+inner join order_details
+on orders.OrderId= order_details.OrderId
+where orders.OrderedDate in (
+select max(orders.OrderedDate) from orders) ;*/
+
 
 
 /* 10. Fetch the maximum priced Ordered Product*/
