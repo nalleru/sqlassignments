@@ -70,7 +70,7 @@ order by NoOfOrders desc;*/
 from customer
 inner join orders
 on customer.CustomerId = orders.CustomerId
-group by orders.OrderId
+group by customer.CustomerId
 having customer.CustomerName in (
 select customer.CustomerName from customer
 left outer join orders
